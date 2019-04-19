@@ -81,8 +81,14 @@ module.exports = class LoginModule {
             msg.channel.send("`https://discordapp.com/oauth2/authorize?client_id=567529813905244160&scope=bot`");
         } else if(cmd[0] == "update")
         {
-            msg.channel.send("Are you sure you want to reboot and update? Type `codekraft_bot_update_confirm` to confirm this action");
-            this.callback = this.updateC;
+            if(this.currentServer)
+            {
+                msg.channel.send("Are you sure you want to reboot and update? Type `codekraft_bot_update_confirm` to confirm this action");
+                this.callback = this.updateC;
+            } else
+            {
+                msg.channel.send("Please authenticate to perform an update");
+            }
         } else
         {
             msg.channel.send(`Unknown Command \`${msg.content}\``);
@@ -233,7 +239,7 @@ updateC(msg, db)
 
 update()
 {
-    var update_script = cp.exec("./update.sh", [], {detached: true});
+    var update_script = cp.exec('"./update.sh" > update.log', {detached: true});
     update_script.unref();
     
     process.exit(0);

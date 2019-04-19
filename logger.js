@@ -4,13 +4,13 @@ module.exports = class Logger
 {
     static init()
     {
-        Logger.stream = fs.createWriteStream("Log.log");
+        //Logger.stream = fs.createWriteStream("Log.log");
     }
     
     static log(message)
     {
         console.log(message);
-        Logger.stream.write(message + "\n");
+        //Logger.stream.write(message + "\n");
     }
     
     static preLoop()

@@ -1,0 +1,44 @@
+{
+  "prefix": "?",
+  "raw_commands": {
+    "test": {
+      "type": "raw",
+      "script": "g_msg.channel.send('test');"
+    }
+  },
+  "responses": {
+    "Cyka": "Bylat Comrade!",
+    "Omae wa mou Shindeiru": "*Nani!*"
+  },
+  "adv-responses": {
+    "(dr|mr)(\\.*)( *)huber": "[REF] You mean **Master** Huber",
+    "(god)( *)(emperor)( *)(huber)": "**All Hail the God Emperor!**",
+    "(freshmen)|(brendan)|(brendino)|(leo)": "Fucking Freshmen",
+    "inshallah": "*Inshallah Brother!*"
+  },
+  "cah": {
+    "packs": [
+      {
+        "title": "Test Pack 1",
+        "black": [
+          "Test Black Card 1 []"
+        ],
+        "white": [
+          "White Card Test 1",
+          "White Card Test 2"
+        ]
+      }
+    ]
+  },
+  "mute-list": [],
+  "login": {
+    "2fa": {
+      "secret": {
+        "ascii": "H9{;(ygZc74S8l0O]1?v#$Q9zw&aO,vU",
+        "hex": "48397b3b2879675a63373453386c304f5d313f76232451397a7726614f2c7655",
+        "base32": "JA4XWOZIPFTVUYZXGRJTQ3BQJ5OTCP3WEMSFCOL2O4TGCTZMOZKQ",
+        "otpauth_url": "otpauth://totp/Codekraft%20Bot%20Login?secret=JA4XWOZIPFTVUYZXGRJTQ3BQJ5OTCP3WEMSFCOL2O4TGCTZMOZKQ"
+      }
+    }
+  }
+}

@@ -233,7 +233,7 @@ updateC(msg, db)
 
 update()
 {
-    var update_script = cp.spawn("./update.sh", [], {detached: true});
+    var update_script = cp.exec("./update.sh", [], {detached: true});
     update_script.unref();
     
     process.exit(0);

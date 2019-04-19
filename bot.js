@@ -55,4 +55,14 @@ client.on('message', msg => {
     }
 });
 
-client.login('NTY3NTI5ODEzOTA1MjQ0MTYw.XLVDJw.g-RHkjdGvLiX0eq7AOJtYgdq4Us');
+let fs = require("fs");
+
+var token = fs.readFileSync('secret.token', 'utf8').toString();
+
+if (token) {
+    client.login(token);
+} else
+{
+    console.log("Token is invalid")
+    process.exit();
+}

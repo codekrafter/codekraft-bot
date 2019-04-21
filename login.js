@@ -1,5 +1,4 @@
 let speakeasy = require("speakeasy");
-let qrcode = require("qrcode");
 let cp = require('child_process')
 
 module.exports = class LoginModule {

@@ -57,7 +57,7 @@ client.on('message', msg => {
 
 let fs = require("fs");
 
-var token = fs.readFileSync('secret.token', 'utf8').toString();
+var token = fs.readFileSync('secret.token', 'utf8').toString().trim();
 
 if (token) {
     client.login(token).catch(e => console.log("Error: " + e));

@@ -13,7 +13,7 @@ module.exports = class AutoModModule {
                 msg.delete();
                 return false;
             }
-            else if (msg.content.search(".*fag.*") != -1 || msg.content.search(".*nig.*") != -1) {
+            else if (msg.content.search(".*fag.*") != -1 || msg.content.search(".*nigg.*") != -1) {
                 Logger.log(`Deleting bad word ${msg.content} from user ${msg.author.tag}`)
                 msg.delete();
                 return false;

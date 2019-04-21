@@ -60,7 +60,7 @@ let fs = require("fs");
 var token = fs.readFileSync('secret.token', 'utf8').toString();
 
 if (token) {
-    client.login(token);
+    client.login(token).catch(e => console.log("Error: " + e));
 } else
 {
     console.log("Token is invalid")

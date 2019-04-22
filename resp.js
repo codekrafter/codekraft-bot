@@ -29,7 +29,7 @@ module.exports = class ReponseModule {
             }
 
             //Dad Bot Functionality
-            var index = msg.content.toString().toLowerCase().search("(i)('| |)(m|(am))");
+            var index = msg.content.toString().toLowerCase().search("(i)('|’| |)(m|(am))");
             if (index === 0) {
                 var im = msg.content.substr(index, msg.content.length - index);
                 var mi = im.indexOf('m', 0);

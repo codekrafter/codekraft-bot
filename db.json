@@ -7,14 +7,14 @@
     }
   },
   "responses": {
-    "Cyka": "Bylat Comrade!",
-    "Omae wa mou Shindeiru": "*Nani!*"
+    "Cyka": "Bylat Comrade!"
   },
   "adv-responses": {
-    "(dr|mr)(\\.*)( *)huber": "[REF] You mean **Master** Huber",
+    "[^(master)](dr|mr|)(\\.*)( *)huber": "[REF] You mean **Master** Huber",
     "(god)( *)(emperor)( *)(huber)": "**All Hail the God Emperor!**",
-    "(freshmen)|(brendan)|(brendino)|(leo)": "Fucking Freshmen",
-    "inshallah": "*Inshallah Brother!*"
+    "(freshmen)|(brendan)|(brendino)|(388516471027793933)|(leo)|(318776986812284930)": "Fucking Freshmen",
+    "inshallah": "*Inshallah Brother!*",
+    "(guess)(| )(what)": "Jihad!"
   },
   "cah": {
     "packs": [
@@ -30,15 +30,5 @@
       }
     ]
   },
-  "mute-list": [],
-  "login": {
-    "2fa": {
-      "secret": {
-        "ascii": "H9{;(ygZc74S8l0O]1?v#$Q9zw&aO,vU",
-        "hex": "48397b3b2879675a63373453386c304f5d313f76232451397a7726614f2c7655",
-        "base32": "JA4XWOZIPFTVUYZXGRJTQ3BQJ5OTCP3WEMSFCOL2O4TGCTZMOZKQ",
-        "otpauth_url": "otpauth://totp/Codekraft%20Bot%20Login?secret=JA4XWOZIPFTVUYZXGRJTQ3BQJ5OTCP3WEMSFCOL2O4TGCTZMOZKQ"
-      }
-    }
-  }
+  "_cah": {}
 }

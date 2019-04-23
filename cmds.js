@@ -20,14 +20,12 @@ module.exports = class CommandModule {
                 type: "func",
                 func: function(msg, db) {
                     if (msg.member.roles.find(r => r.name === "Mod")) {
-                        var num = 1;
-                        if (Number.isInteger(msg.toString().split(" ")[1])) {
-                            num = msg.toString().split(" ")[1];
-                        } else
+                        var num = 10;
+                        if(Number.isInteger(msg.toString().split(" ")[1]))
                         {
-                            console.log(Number.isInteger(msg.toString().split(" ")[1]) + "Is not an integer");
+                            num = msg.toString().split(" ")[1];
                         }
-
+                        
                         msg.channel.fetchMessages({ limit: num })
                             .then(messages => {
                                 msg.channel.bulkDelete(messages);
@@ -41,9 +39,6 @@ module.exports = class CommandModule {
     init() {}
 
     onMessage(msg, db, client) {
-        if (!msg.guild)
-            return;
-
         if (msg.content[0] === db.get("prefix").value()) {
             //var cmds = Object.assign(db.get("commands"), this.hard_commands);
 
@@ -75,7 +70,8 @@ module.exports = class CommandModule {
                     msg.reply("Command `" + entered_command + "` is not valid. Try typing `" + db.get("prefix").value() + "` to get help with commands");
                 }
             }
-            else {}
+            else {
+            }
         }
     }
 }

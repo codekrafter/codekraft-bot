@@ -9,4 +9,4 @@ git pull
 
 echo "Updated, starting bot"
 
-/bin/bash ./run.sh
+/bin/bash ./startup.sh

@@ -6,9 +6,6 @@ module.exports = class ReponseModule {
     init(db) {}
 
     onMessage(msg, db) {
-        if (!msg.guild)
-            return;
-
         if (!msg.author.bot && msg.channel.id != 567476531354665002) {
 
             //console.log(msg.author.tag);
@@ -29,21 +26,24 @@ module.exports = class ReponseModule {
             }
 
             //Dad Bot Functionality
-            var index = msg.content.toString().toLowerCase().search("(i)('|’| |)(m|(am))");
+            var index = msg.content.toString().toLowerCase().search("(i)('| |)(m|(am))");
             if (index === 0) {
                 var im = msg.content.substr(index, msg.content.length - index);
                 var mi = im.indexOf('m', 0);
                 if (mi != -1) {
                     var adj = im.substr(mi + 1, im.length - mi);
-                    if (adj[0] == " ") {
-                        if (adj.substr(0, 3) == " a ") {
+                    if(adj[0] == " ")
+                    {
+                        if(adj.substr(0, 3) == " a ")
+                        {
                             adj = adj.substr(3);
                         }
-
-                        if (adj.substr(0, 4) == " an ") {
+                        
+                        if(adj.substr(0, 4) == " an ")
+                        {
                             adj = adj.substr(4);
                         }
-
+                        
                         msg.channel.send("Hi " + adj.trim().substr(0, 20) + ", I'm dad");
                     }
                 }

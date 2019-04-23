@@ -20,9 +20,12 @@ module.exports = class CommandModule {
                 type: "func",
                 func: function(msg, db) {
                     if (msg.member.roles.find(r => r.name === "Mod")) {
-                        var num = 10;
+                        var num = 1;
                         if (Number.isInteger(msg.toString().split(" ")[1])) {
                             num = msg.toString().split(" ")[1];
+                        } else
+                        {
+                            console.log(Number.isInteger(msg.toString().split(" ")[1]) + "Is not an integer");
                         }
 
                         msg.channel.fetchMessages({ limit: num })

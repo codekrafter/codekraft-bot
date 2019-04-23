@@ -228,8 +228,7 @@ updateC(msg, db)
     
     if(msg.content == "codekraft_bot_update_confirm")
     {
-        msg.channel.send("Verification phrase matched, updating...");
-        this.update();
+        msg.channel.send("Verification phrase matched, updating...").then(() => this.update());
     } else
     {
         msg.channel.send("Does not match verification phrase, aborting update.");
@@ -238,7 +237,7 @@ updateC(msg, db)
 
 update()
 {
-    var update_script = cp.exec('"./update.sh" > update.log', {detached: true});
+    var update_script = cp.exec('"./update.sh" > bot.log', {detached: true});
     update_script.unref();
     
     process.exit(0);

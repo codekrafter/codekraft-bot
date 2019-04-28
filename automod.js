@@ -1,5 +1,3 @@
-let Logger = require("./logger.js");
-
 module.exports = class AutoModModule {
     constructor() {
 
@@ -14,7 +12,7 @@ module.exports = class AutoModModule {
                 return false;
             }
             else if (msg.content.search(".*fag.*") != -1 || msg.content.search(".*nigg.*") != -1) {
-                Logger.log(`Deleting bad word ${msg.content} from user ${msg.author.tag}`)
+                console.log(`Deleting bad word ${msg.content} from user ${msg.author.tag}`)
                 msg.delete();
                 return false;
             }

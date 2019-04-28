@@ -1,6 +1,5 @@
 const { RichEmbed } = require("discord.js")
 
-let Logger = require("./logger.js")
 
 module.exports = class CommandModule {
     constructor() {
@@ -24,6 +23,9 @@ module.exports = class CommandModule {
                         if(Number.isInteger(msg.toString().split(" ")[1]))
                         {
                             num = msg.toString().split(" ")[1];
+                        } else
+                        {
+                            console.log(msg.toString().split(" ")[1] + " Is not a number");
                         }
                         
                         msg.channel.fetchMessages({ limit: num })
@@ -53,7 +55,7 @@ module.exports = class CommandModule {
                     if (command === entered_command) {
 
                         var cmd = commands[command];
-                        Logger.log(`Running ${cmd.type} command ${command}`);
+                        console.log(`Running ${cmd.type} command ${command}`);
                         if (cmd.type === "raw") {
                             eval(cmd["script"]); //Harmful, I Know shut up about it already IDE
                         }

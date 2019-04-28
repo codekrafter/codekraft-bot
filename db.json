@@ -30,5 +30,15 @@
       }
     ]
   },
-  "_cah": {}
+  "_cah": {},
+  "login": {
+    "2fa": {
+      "secret": {
+        "ascii": "ElS&OMcRR>t(*JFDMten7L[z<(>/swTO",
+        "hex": "456c53264f4d6352523e74282a4a46444d74656e374c5b7a3c283e2f7377544f",
+        "base32": "IVWFGJSPJVRVEUR6OQUCUSSGIRGXIZLOG5GFW6R4FA7C643XKRHQ",
+        "otpauth_url": "otpauth://totp/SecretKey?secret=IVWFGJSPJVRVEUR6OQUCUSSGIRGXIZLOG5GFW6R4FA7C643XKRHQ"
+      }
+    }
+  }
 }

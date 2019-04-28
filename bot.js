@@ -11,44 +11,58 @@ const ResponseMod = require("./resp.js");
 const CommandMod = require("./cmds.js");
 const AutoModMod = require("./automod.js");
 const CAHMod = require("./cah.js");
+const LoginMod = require("./login.js")
 
 let ResponseModule = new ResponseMod();
 let CommandModule = new CommandMod();
 let AutoModModule = new AutoModMod();
 let CAHModule = new CAHMod();
-
-let Logger = require("./logger.js");
+let LoginModule = new LoginMod();
 
 // Set some defaults (required if your JSON file is empty)
-db.defaults({ raw_commands: {"test": {type: "raw", script: "g_msg.channel.send('test');"}}})
-  .write()
+db.defaults({ raw_commands: { "test": { type: "raw", script: "g_msg.channel.send('test');" } } })
+    .write()
 
 client.on('ready', () => {
     db.read();
-    
-    Logger.init();
-    
+
     AutoModModule.init();
     ResponseModule.init();
     CommandModule.init();
     CAHModule.init();
+    LoginModule.init(db, client);
 
     console.log(`Bot Initialized`);
 });
 
 client.on('message', msg => {
     db.read();
-    Logger.preLoop();
-    
-    var valid = AutoModModule.onMessage(msg, db);
-    if(valid)
-    {
-        ResponseModule.onMessage(msg, db);
-        CommandModule.onMessage(msg, db, client);
-        CAHModule.onMessage(msg, db);
+
+    if (msg.guild) {
+        var valid = AutoModModule.onMessage(msg, db);
+        if (valid) {
+            ResponseModule.onMessage(msg, db);
+            CommandModule.onMessage(msg, db, client);
+            CAHModule.onMessage(msg, db);
+
+            if (msg.channel == LoginModule.currentChannel) {
+                LoginModule.onListenMessage(msg);
+            }
+        }
     }
-    
-    Logger.postLoop();
+    else {
+        LoginModule.onPM(msg, db);
+    }
 });
 
-client.login('NTY3NTI5ODEzOTA1MjQ0MTYw.XLVDJw.g-RHkjdGvLiX0eq7AOJtYgdq4Us');
+let fs = require("fs");
+
+var token = fs.readFileSync('secret.token', 'utf8').toString().trim();
+
+if (token) {
+    client.login(token).catch(e => console.log("Error: " + e));
+} else
+{
+    console.log("Token is invalid")
+    process.exit();
+}

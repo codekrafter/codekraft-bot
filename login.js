@@ -28,13 +28,14 @@ module.exports = class LoginModule {
             if (this.loggedin) {
                 msg.channel.send("You are already logged in");
             }
+            
 
             var verified = speakeasy.totp.verify({
                 secret: db.get("login.2fa.secret.base32").value(),
                 encoding: "base32",
                 token: cmd[1]
             });
-
+            
             //verified = true; // For quick testing/iteration
 
             this.loggedin = verified;

@@ -20,8 +20,8 @@ let CAHModule = new CAHMod();
 let LoginModule = new LoginMod();
 
 // Set some defaults (required if your JSON file is empty)
-db.defaults({ raw_commands: { "test": { type: "raw", script: "g_msg.channel.send('test');" } } })
-    .write()
+//db.defaults({ raw_commands: { "test": { type: "raw", script: "g_msg.channel.send('test');" } } })
+//    .write()
 
 client.on('ready', () => {
     db.read();
@@ -37,13 +37,13 @@ client.on('ready', () => {
 
 client.on('message', msg => {
     db.read();
-
     if (msg.guild) {
-        var valid = AutoModModule.onMessage(msg, db);
+        var g_db = db.get(msg.guild.id.trim());
+        var valid = AutoModModule.onMessage(msg, g_db);
         if (valid) {
-            ResponseModule.onMessage(msg, db);
-            CommandModule.onMessage(msg, db, client);
-            CAHModule.onMessage(msg, db);
+            ResponseModule.onMessage(msg, g_db);
+            CommandModule.onMessage(msg, g_db, client);
+            CAHModule.onMessage(msg, g_db);
 
             if (msg.channel == LoginModule.currentChannel) {
                 LoginModule.onListenMessage(msg);
@@ -61,8 +61,8 @@ var token = fs.readFileSync('secret.token', 'utf8').toString().trim();
 
 if (token) {
     client.login(token).catch(e => console.log("Error: " + e));
-} else
-{
+}
+else {
     console.log("Token is invalid")
     process.exit();
 }

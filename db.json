@@ -1,43 +1,45 @@
 {
-  "prefix": "?",
-  "raw_commands": {
-    "test": {
-      "type": "raw",
-      "script": "g_msg.channel.send('test');"
-    }
-  },
-  "responses": {
-    "Cyka": "Bylat Comrade!"
-  },
-  "adv-responses": {
-    "[^(master)](dr|mr|)(\\.*)( *)huber": "[REF] You mean **Master** Huber",
-    "(god)( *)(emperor)( *)(huber)": "**All Hail the God Emperor!**",
-    "(freshmen)|(brendan)|(brendino)|(388516471027793933)|(leo)|(318776986812284930)": "Fucking Freshmen",
-    "inshallah": "*Inshallah Brother!*",
-    "(guess)(| )(what)": "Jihad!"
-  },
-  "cah": {
-    "packs": [
-      {
-        "title": "Test Pack 1",
-        "black": [
-          "Test Black Card 1 []"
-        ],
-        "white": [
-          "White Card Test 1",
-          "White Card Test 2"
-        ]
+  "567474684451356687": {
+    "prefix": "?",
+    "raw_commands": {
+      "test": {
+        "type": "raw",
+        "script": "g_msg.channel.send('test');"
       }
-    ]
+    },
+    "responses": {
+      "Cyka": "Bylat Comrade!"
+    },
+    "adv-responses": {
+      "[^(master)](dr|mr|)(\\.*)( *)huber": "[REF] You mean **Master** Huber",
+      "(god)( *)(emperor)( *)(huber)": "**All Hail the God Emperor!**",
+      "(freshmen)|(brendan)|(brendino)|(388516471027793933)|(leo)|(318776986812284930)": "Fucking Freshmen",
+      "inshallah": "*Inshallah Brother!*",
+      "(guess)(| )(what)": "Jihad!"
+    },
+    "cah": {
+      "packs": [
+        {
+          "title": "Test Pack 1",
+          "black": [
+            "Test Black Card 1 []"
+          ],
+          "white": [
+            "White Card Test 1",
+            "White Card Test 2"
+          ]
+        }
+      ]
+    },
+    "_cah": {}
   },
-  "_cah": {},
   "login": {
     "2fa": {
       "secret": {
-        "ascii": "ElS&OMcRR>t(*JFDMten7L[z<(>/swTO",
-        "hex": "456c53264f4d6352523e74282a4a46444d74656e374c5b7a3c283e2f7377544f",
-        "base32": "IVWFGJSPJVRVEUR6OQUCUSSGIRGXIZLOG5GFW6R4FA7C643XKRHQ",
-        "otpauth_url": "otpauth://totp/SecretKey?secret=IVWFGJSPJVRVEUR6OQUCUSSGIRGXIZLOG5GFW6R4FA7C643XKRHQ"
+        "ascii": "):TC5T]0SUkL22aQ>cCQGcy,w0)V]x>%",
+        "hex": "293a544335545d3053556b4c323261513e6343514763792c773029565d783e25",
+        "base32": "FE5FIQZVKROTAU2VNNGDEMTBKE7GGQ2RI5RXSLDXGAUVMXLYHYSQ",
+        "otpauth_url": "otpauth://totp/SecretKey?secret=FE5FIQZVKROTAU2VNNGDEMTBKE7GGQ2RI5RXSLDXGAUVMXLYHYSQ"
       }
     }
   }

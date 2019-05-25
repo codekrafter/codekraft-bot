@@ -11,7 +11,6 @@
       "Cyka": "Bylat Comrade!"
     },
     "adv-responses": {
-      "[^(master)](dr|mr|)(\\.*)( *)huber": "[REF] You mean **Master** Huber",
       "(god)( *)(emperor)( *)(huber)": "**All Hail the God Emperor!**",
       "(freshmen)|(brendan)|(brendino)|(388516471027793933)|(leo)|(318776986812284930)": "Fucking Freshmen",
       "inshallah": "*Inshallah Brother!*",

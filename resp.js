@@ -25,7 +25,7 @@ module.exports = class ReponseModule {
                 }
             }
 
-            //Dad Bot Functionality
+            //Dad Bot
             var index = msg.content.toString().toLowerCase().search("(i)('| |)(m|(am))");
             if (index === 0) {
                 var im = msg.content.substr(index, msg.content.length - index);
@@ -46,6 +46,22 @@ module.exports = class ReponseModule {
                         
                         msg.channel.send("Hi " + adj.trim().substr(0, 20) + ", I'm dad");
                     }
+                }
+            }
+            
+            //Huber Correction
+            //Old DB: "[^(master)](dr|mr|)(\\.*)( *)huber": "[REF] You mean **Master** Huber",
+            var split = msg.content.toString().toLowerCase().split(" ");
+            
+            index = split.indexOf("huber");
+            if(index > -1)
+            {
+                var preWord = split[index-1];
+                console.log(preWord);
+                
+                if(preWord != "Master")
+                {
+                    msg.reply("You mean **Master** Huber");
                 }
             }
         }

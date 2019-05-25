@@ -57,11 +57,12 @@ module.exports = class ReponseModule {
             if(index > -1)
             {
                 var preWord = split[index-1];
+                var prePreWord = split[index-1];
                 console.log(preWord);
                 
-                if(preWord != "Master")
+                if(preWord != "master" && (preWord != "emperor" && prePreWord != "god"))
                 {
-                    msg.reply("You mean **Master** Huber");
+                    msg.reply("You mean ***Master*** Huber");
                 }
             }
         }

@@ -1,3 +1,10 @@
 #!/bin/bash
 
-node bot.js
+#/usr/bin/env node bot.js
+
+
+while :
+do
+echo "Looping..."
+sleep 30;
+done

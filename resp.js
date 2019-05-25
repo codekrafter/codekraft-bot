@@ -57,6 +57,7 @@ module.exports = class ReponseModule {
             if(index > -1)
             {
                 var preWord = split[index-1];
+                console.log(preWord);
                 
                 if(preWord != "Master")
                 {

@@ -89,6 +89,15 @@ module.exports = class LoginModule {
             {
                 msg.channel.send("Please authenticate to perform an update");
             }
+        } else if (cmd[0] == "remove_hoe])
+        {
+            if(this.currentServer)
+            {
+                this.currentServer.member(msg.author).removeRole("Hoe");
+            } else
+            {
+                msg.channel.send("Please select a server first");
+            }
         } else
         {
             msg.channel.send(`Unknown Command \`${msg.content}\``);

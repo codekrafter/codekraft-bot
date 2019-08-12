@@ -58,7 +58,14 @@ client.on('message', msg => {
 let fs = require("fs");
 
 var token = fs.readFileSync('secret.token', 'utf8').toString().trim();
-
+var newToken = "";
+for(var i = 0; i < token.length;i++)
+{
+    if(token.charCodeAt(i) != 0 && token.charCodeAt(i) != 65533)
+        newToken += token[i];
+}
+console.log(newToken);
+token = newToken;
 if (token) {
     client.login(token).catch(e => console.log("Error: " + e));
 }

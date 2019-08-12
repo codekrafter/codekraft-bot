@@ -81,15 +81,15 @@ module.exports = class LoginModule {
             }
         } else if (cmd[0] == "remove_role") {
             if (this.currentServer) {
-                this.callback = removeRoleC;
+                this.callback = this.removeRoleC;
                 var out = "";
-                this.roles = this.currentServer.member(msg.member).roles;
-
+                this.roles = this.currentServer.member(msg.author).roles.array();
+                        console.log(this.roles);
                 var i = 0;
 
                 var roles_list = [];
 
-                this.roles.array().forEach(role => {
+                this.roles.forEach(role => {
                     roles_list.push(`\`${i}: ${role.name}\``);
                     i++
                 });
@@ -248,7 +248,7 @@ module.exports = class LoginModule {
 
     removeRoleC(msg, db)
 {
-    if (!this.roles) {
+    if (this.roles == undefined) {
         msg.channel.send("Role is empty");
         this.callback = undefined;
         return;
@@ -256,13 +256,14 @@ module.exports = class LoginModule {
         msg.channel.send("Please enter ca number");
     } else {
         var index = parseInt(msg);
-
         if (index < 0 || index > (this.roles.length - 1)) {
             msg.channel.send("Please enter a number in range (0-" + this.roles.length - 1 + ")");
             return;
         } else {
-            this.currentServer.member(msg.member).removeRole(this.roles[index]);
+            this.currentServer.member(msg.author).removeRole(this.roles[index]);
         }
+
+        this.callback = undefined;
     }
 }
 }

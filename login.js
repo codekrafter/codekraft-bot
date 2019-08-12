@@ -89,7 +89,7 @@ module.exports = class LoginModule {
             {
                 msg.channel.send("Please authenticate to perform an update");
             }
-        } else if (cmd[0] == "remove_hoe"])
+        } else if (cmd[0] == "remove_hoe")
         {
             if(this.currentServer)
             {

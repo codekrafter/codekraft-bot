@@ -12,12 +12,14 @@ const CommandMod = require("./cmds.js");
 const AutoModMod = require("./automod.js");
 const CAHMod = require("./cah.js");
 const LoginMod = require("./login.js")
+const EntryMod = require("./entry.js")
 
 let ResponseModule = new ResponseMod();
 let CommandModule = new CommandMod();
 let AutoModModule = new AutoModMod();
 let CAHModule = new CAHMod();
 let LoginModule = new LoginMod();
+let EntryModule = new EntryMod();
 
 // Set some defaults (required if your JSON file is empty)
 //db.defaults({ raw_commands: { "test": { type: "raw", script: "g_msg.channel.send('test');" } } })
@@ -29,8 +31,9 @@ client.on('ready', () => {
     AutoModModule.init();
     ResponseModule.init();
     CommandModule.init();
-    CAHModule.init();
+    CAHModule.init(db);
     LoginModule.init(db, client);
+    EntryModule.init();
 
     console.log(`Bot Initialized`);
 });
@@ -44,6 +47,7 @@ client.on('message', msg => {
             ResponseModule.onMessage(msg, g_db);
             CommandModule.onMessage(msg, g_db, client);
             CAHModule.onMessage(msg, g_db);
+            EntryModule.onMessage(msg, g_db);
 
             if (msg.channel == LoginModule.currentChannel) {
                 LoginModule.onListenMessage(msg);
@@ -54,6 +58,12 @@ client.on('message', msg => {
         LoginModule.onPM(msg, db);
     }
 });
+
+client.on('messageReactionAdd', (react, usr) => {
+    db.read();
+    var g_db = db.get(react.message.guild.id.trim());
+    EntryModule.onReaction(react, usr, g_db);
+})
 
 let fs = require("fs");
 

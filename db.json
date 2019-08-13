@@ -33,7 +33,14 @@
     "_cah": {}
   },
   "465587066344964098": {
-    "prefix": "?"
+    "prefix": "?",
+    "raw_commands": {},
+    "responses": {},
+    "adv-responses": {},
+    "cah": {},
+    "_cah": {},
+    "welcome_message": "610676919385456660",
+    "welcome_channel": "465610378341122058"
   },
   "login": {
     "2fa": {

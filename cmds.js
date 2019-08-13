@@ -8,7 +8,7 @@ module.exports = class CommandModule {
                 type: "func",
                 func: function(msg, db) {
                     var res = new RichEmbed()
-                        .setTitle("RHS CAH Bot Help");
+                        .setTitle("Codekraft Bot Help");
 
 
                     msg.author.send(res);
@@ -50,7 +50,7 @@ module.exports = class CommandModule {
 
             var found = false;
 
-            if (entered_command != "cah") {
+            if (entered_command != "cah" && entered_command != "test" && entered_command.length > 0) {
                 for (var command in commands) {
                     if (command === entered_command) {
 
@@ -71,8 +71,6 @@ module.exports = class CommandModule {
                 if (!found) {
                     msg.reply("Command `" + entered_command + "` is not valid. Try typing `" + db.get("prefix").value() + "` to get help with commands");
                 }
-            }
-            else {
             }
         }
     }

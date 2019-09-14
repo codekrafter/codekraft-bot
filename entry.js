@@ -2,9 +2,6 @@ module.exports = class EntryModule {
     constructor() {
 
     }
-
-    messages = [];
-
     init() { }
 
     onMessage(msg, db) {

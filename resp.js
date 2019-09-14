@@ -56,9 +56,14 @@ module.exports = class ReponseModule {
             index = split.indexOf("huber");
             if(index > -1)
             {
-                var preWord = split[index-1].trim();
-                var prePreWord = split[index-1].trim();
-                console.log(preWord);
+		var preWord;
+		var prePreWord;
+		if(split[index-1])
+		{
+                preWord = split[index-1].trim();
+                prePreWord = split[index-1].trim();
+        	}        
+		console.log(preWord);
                 
                 if(preWord != "master" && (preWord != "emperor" && prePreWord != "god"))
                 {

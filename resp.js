@@ -49,21 +49,23 @@ module.exports = class ReponseModule {
             }
 
             //Huber Correction
-            //Old DB: "[^(master)](dr|mr|)(\\.*)( *)huber": "[REF] You mean **Master** Huber",
-            var split = msg.content.toString().toLowerCase().split(" ");
+            if (db.get("huber_correct").value()) {
+                //Old DB: "[^(master)](dr|mr|)(\\.*)( *)huber": "[REF] You mean **Master** Huber",
+                var split = msg.content.toString().toLowerCase().split(" ");
 
-            index = split.indexOf("huber");
-            if (index > -1) {
-                var preWord;
-                var prePreWord;
-                if (split[index - 1]) {
-                    preWord = split[index - 1].trim();
-                    prePreWord = split[index - 1].trim();
-                }
-                console.log(preWord);
+                index = split.indexOf("huber");
+                if (index > -1) {
+                    var preWord;
+                    var prePreWord;
+                    if (split[index - 1]) {
+                        preWord = split[index - 1].trim();
+                        prePreWord = split[index - 1].trim();
+                    }
+                    console.log(preWord);
 
-                if (preWord != "master" && (preWord != "emperor" && prePreWord != "god")) {
-                    msg.reply("You mean ***Master*** Huber");
+                    if (preWord != "master" && (preWord != "emperor" && prePreWord != "god")) {
+                        msg.reply("You mean ***Master*** Huber");
+                    }
                 }
             }
         }

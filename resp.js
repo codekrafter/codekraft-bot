@@ -63,7 +63,7 @@ module.exports = class ReponseModule {
                     }
                     console.log(preWord);
 
-                    if (preWord != "master" && (preWord != "emperor" && prePreWord != "god")) {
+                    if (preWord != "master" && (preWord != "emperor" && prePreWord != "god") && preWord != "daddy") {
                         msg.reply("You mean ***Master*** Huber");
                     }
                 }

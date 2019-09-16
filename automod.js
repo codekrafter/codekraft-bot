@@ -6,7 +6,7 @@ module.exports = class AutoModModule {
     init() {}
 
     onMessage(msg, db) {
-        if (msg.guild) {
+        if (msg.guild && msg.member) {
             if (msg.member.roles.find(r => r.name === "Mute") && msg.member.tag.toLowerCase() != "codekrafter" + "#8558") {
                 msg.delete();
                 return false;

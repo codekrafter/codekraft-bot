@@ -42,7 +42,7 @@ module.exports = class ReponseModule {
                         if(adj.substr(0, 4) == " an ")
                         {
                             adj = adj.substr(4);
-                        }s
+                        }
                         
                         msg.channel.send("Hi " + adj.trim().substr(0, 20) + ", I'm dad");
                     }

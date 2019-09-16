@@ -16,6 +16,8 @@ module.exports = class EntryModule {
     onReaction(reaction, user, db) {
         if (user.bot)
             return;
+	if(!this.messages)
+		this.messages = [];
 
         if (this.messages.indexOf(reaction.message.id) != -1) {
             if (reaction.emoji.name == "🇹") {

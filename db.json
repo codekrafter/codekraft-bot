@@ -1,6 +1,8 @@
 {
   "567474684451356687": {
     "prefix": "?",
+    "dad_bot": true,
+    "huber_correct": true,
     "raw_commands": {
       "test": {
         "type": "raw",

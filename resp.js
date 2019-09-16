@@ -3,7 +3,7 @@ module.exports = class ReponseModule {
 
     }
 
-    init(db) {}
+    init(db) { }
 
     onMessage(msg, db) {
         if (!msg.author.bot && msg.channel.id != 567476531354665002) {
@@ -26,47 +26,43 @@ module.exports = class ReponseModule {
             }
 
             //Dad Bot
-            var index = msg.content.toString().toLowerCase().search("(i)('| |)(m|(am))");
-            if (index === 0) {
-                var im = msg.content.substr(index, msg.content.length - index);
-                var mi = im.indexOf('m', 0);
-                if (mi != -1) {
-                    var adj = im.substr(mi + 1, im.length - mi);
-                    if(adj[0] == " ")
-                    {
-                        if(adj.substr(0, 3) == " a ")
-                        {
-                            adj = adj.substr(3);
+            if (db.get("dad_bot").value()) {
+                var index = msg.content.toString().toLowerCase().search("(i)('| |)(m|(am))");
+                if (index === 0) {
+                    var im = msg.content.substr(index, msg.content.length - index);
+                    var mi = im.indexOf('m', 0);
+                    if (mi != -1) {
+                        var adj = im.substr(mi + 1, im.length - mi);
+                        if (adj[0] == " ") {
+                            if (adj.substr(0, 3) == " a ") {
+                                adj = adj.substr(3);
+                            }
+
+                            if (adj.substr(0, 4) == " an ") {
+                                adj = adj.substr(4);
+                            }
+
+                            msg.channel.send("Hi " + adj.trim().substr(0, 20) + ", I'm dad");
                         }
-                        
-                        if(adj.substr(0, 4) == " an ")
-                        {
-                            adj = adj.substr(4);
-                        }
-                        
-                        msg.channel.send("Hi " + adj.trim().substr(0, 20) + ", I'm dad");
                     }
                 }
             }
-            
+
             //Huber Correction
             //Old DB: "[^(master)](dr|mr|)(\\.*)( *)huber": "[REF] You mean **Master** Huber",
             var split = msg.content.toString().toLowerCase().split(" ");
-            
+
             index = split.indexOf("huber");
-            if(index > -1)
-            {
-		var preWord;
-		var prePreWord;
-		if(split[index-1])
-		{
-                preWord = split[index-1].trim();
-                prePreWord = split[index-1].trim();
-        	}        
-		console.log(preWord);
-                
-                if(preWord != "master" && (preWord != "emperor" && prePreWord != "god"))
-                {
+            if (index > -1) {
+                var preWord;
+                var prePreWord;
+                if (split[index - 1]) {
+                    preWord = split[index - 1].trim();
+                    prePreWord = split[index - 1].trim();
+                }
+                console.log(preWord);
+
+                if (preWord != "master" && (preWord != "emperor" && prePreWord != "god")) {
                     msg.reply("You mean ***Master*** Huber");
                 }
             }

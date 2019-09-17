@@ -69,10 +69,9 @@ module.exports = class ReponseModule {
                 }
             }
 
-	   if(msg.author.id == 578372843071340546 && msg.content.toString().toLowerCase().indexOf("parent") != 0)
-	   {
-		msg.channel.send("Helicopter Incoming!");
-	   }
+            if (msg.author.id == 578372843071340546 && msg.content.toLowerCase().includes("parent")) {
+                msg.channel.send("Helicopter Incoming!");
+            }
         }
     }
 }

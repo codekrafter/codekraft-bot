@@ -68,7 +68,8 @@ module.exports = class ReponseModule {
                     }
                 }
             }
-
+	    
+	    // Henry Teasing
             if (msg.author.id == 578372843071340546 && msg.content.toLowerCase().includes("parent")) {
                 msg.channel.send("Helicopter Incoming!");
             }

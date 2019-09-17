@@ -1,6 +1,6 @@
 # Secret Token
 secret.token
-
+secret.*
 # Logs
 logs
 *.log

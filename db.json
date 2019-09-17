@@ -38,12 +38,14 @@
     "prefix": "?",
     "raw_commands": {},
     "responses": {},
-    "adv-responses": {},
+    "adv-responses": {
+    	"tipster": "heyyyyy tipster"
+    },
     "cah": {},
     "_cah": {},
     "welcome_message": "610676919385456660",
     "welcome_channel": "465610378341122058",
-    "dad_bot": true
+    "dad_bot": false
   },
   "login": {
     "2fa": {

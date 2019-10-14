@@ -43,7 +43,7 @@ module.exports = class CommandModule {
     onMessage(msg, db, client) {
         if (msg.content[0] === db.get("prefix").value()) {
             //var cmds = Object.assign(db.get("commands"), this.hard_commands);
-
+	    const prefix = db.get("prefix").value();
             const entered_command = msg.content.substr(1, msg.content.length).split(" ")[0];
             var g_msg = msg;
             var commands = Object.assign(db.get("raw_commands").value(), this.hard_commands);
@@ -67,9 +67,8 @@ module.exports = class CommandModule {
                         msg.delete();
                     }
                 }
-
-                if (!found) {
-                    msg.reply("Command `" + entered_command + "` is not valid. Try typing `" + db.get("prefix").value() + "` to get help with commands");
+                if (!found && entered_command.split(prefix).filter(str => str.length > 0).length) {
+                    msg.reply("Command `" + entered_command + "` is not valid. Try typing `" + prefix + "help` to get help with commands");
                 }
             }
         }

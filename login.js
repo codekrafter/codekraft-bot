@@ -2,13 +2,16 @@ let speakeasy = require("speakeasy");
 let cp = require('child_process')
 
 module.exports = class LoginModule {
-    init(db, client) {
-        if (!db.has("login.2fa.secret").value()) {
+    init(db, client, key) {
+        this.key = key;
+        
+        if (!key) {
             var secret = speakeasy.generateSecret();
 
             //secret.otpauth_url = speakeasy.otpauthURL({ secret: secret.ascii, label: 'Codekraft Bot Login', algorithm: 'sha512' });
-
-            db.set("login.2fa.secret", secret).write();
+            console.log("new secret for 2fa: " + JSON.stringify(secret));
+            this.key = secret;
+            //db.set("login.2fa.secret", secret).write();
         }
 
         this.client = client;
@@ -31,7 +34,7 @@ module.exports = class LoginModule {
 
 
             var verified = speakeasy.totp.verify({
-                secret: db.get("login.2fa.secret.base32").value(),
+                secret: /*db.get("login.2fa.secret.base32").value()*/this.key["2fa"].secret.base32,
                 encoding: "base32",
                 token: cmd[1]
             });

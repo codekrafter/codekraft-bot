@@ -34,6 +34,47 @@ module.exports = class CommandModule {
                             })
                     }
                 }
+            },
+            "debug": {
+                type: "func",
+                func: function(msg, db)
+                {
+                    if(msg.member.id == 145273927248248832)
+                    {
+                        var execCode = msg.content.substr(1, msg.content.length).split(" ").splice(1).join(" ");
+                        
+                        // Remove markdown code marking
+                        if(execCode[0] == "`")
+                        {
+                            execCode = execCode.substr(1, execCode.length-2)
+                        }
+
+                        //console.log(execCode)
+                        
+                        try {
+                        eval(execCode)
+                        } catch (e)
+                        {
+                            msg.reply("Error executing debug code");
+                            msg.channel.send(">>> " + e.toString())
+                        }
+                    } else
+                    {
+                        msg.reply("You are not authorized. Begone thot")
+                    }
+                }
+            },
+            "report": {
+                type: "func",
+                func: function(msg, db)
+                {
+                    const fs = require('fs');
+
+                    fs.appendFile('reports.txt', msg.guild.name + "; " + msg.author.tag + ": " + msg.content.split(" ").splice(1).join(" "), function (err) {
+                        if(err) throw err;
+                        msg.channel.send("Saved report!")
+                    });
+                }
             }
         };
     }
@@ -50,12 +91,12 @@ module.exports = class CommandModule {
 
             var found = false;
 
-            if (entered_command != "cah" && entered_command != "test" && entered_command.length > 0) {
+            if (entered_command != "cah" && entered_command != "m" || entered_command == "music" && entered_command != "test" && entered_command.length > 0) {
                 for (var command in commands) {
                     if (command === entered_command) {
 
                         var cmd = commands[command];
-                        console.log(`Running ${cmd.type} command ${command}`);
+                        //console.log(`Running ${cmd.type} command ${command}`);
                         if (cmd.type === "raw") {
                             eval(cmd["script"]); //Harmful, I Know shut up about it already IDE
                         }

@@ -11,8 +11,9 @@ const ResponseMod = require("./resp.js");
 const CommandMod = require("./cmds.js");
 const AutoModMod = require("./automod.js");
 const CAHMod = require("./cah.js");
-const LoginMod = require("./login.js")
-const EntryMod = require("./entry.js")
+const LoginMod = require("./login.js");
+const EntryMod = require("./entry.js");
+const MusicMod = require("./music.js");
 
 let ResponseModule = new ResponseMod();
 let CommandModule = new CommandMod();
@@ -20,7 +21,10 @@ let AutoModModule = new AutoModMod();
 let CAHModule = new CAHMod();
 let LoginModule = new LoginMod();
 let EntryModule = new EntryMod();
+let MusicModule = new MusicMod();
 
+var oauth_key = undefined;
+var yt_key = undefined;
 // Set some defaults (required if your JSON file is empty)
 //db.defaults({ raw_commands: { "test": { type: "raw", script: "g_msg.channel.send('test');" } } })
 //    .write()
@@ -32,8 +36,9 @@ client.on('ready', () => {
     ResponseModule.init();
     CommandModule.init();
     CAHModule.init(db);
-    LoginModule.init(db, client);
+    LoginModule.init(db, client, oauth_key);
     EntryModule.init();
+    MusicModule.init(db, yt_key);
 
     console.log(`Bot Initialized`);
 });
@@ -48,6 +53,7 @@ client.on('message', msg => {
             CommandModule.onMessage(msg, g_db, client);
             CAHModule.onMessage(msg, g_db);
             EntryModule.onMessage(msg, g_db);
+            MusicModule.onMessage(msg, g_db);
 
             if (msg.channel == LoginModule.currentChannel) {
                 LoginModule.onListenMessage(msg);
@@ -67,7 +73,7 @@ client.on('messageReactionAdd', (react, usr) => {
 
 let fs = require("fs");
 
-var token = fs.readFileSync('secret.token', 'utf8').toString().trim();
+/*var token = fs.readFileSync('secret.token', 'utf8').toString().trim();
 var newToken = "";
 for(var i = 0; i < token.length;i++)
 {
@@ -82,4 +88,38 @@ if (token) {
 else {
     console.log("Token is invalid")
     process.exit();
+}*/
+
+var secret = JSON.parse(fs.readFileSync('secret.json', 'utf8').toString().trim());
+var token = secret.token;
+if (token) {
+    client.login(token).catch(e => console.log("Error: " + e));
 }
+else {
+    console.log("Token is invalid")
+    process.exit();
+}
+oauth_key = secret.auth;
+yt_key = secret.yt_token;
+
+function exitHandler(options, exitCode)
+{
+    client.voiceConnections.forEach(val => val.disconnect());
+
+    //if (options.cleanup) console.log('clean');
+    if (exitCode && exitCode != 0) console.log(exitCode);
+    if (options.exit) process.exit();
+}
+
+//do something when app is closing
+process.on('exit', exitHandler.bind(null,{cleanup:true}));
+
+//catches ctrl+c event
+process.on('SIGINT', exitHandler.bind(null, {exit:true}));
+
+// catches "kill pid" (for example: nodemon restart)
+process.on('SIGUSR1', exitHandler.bind(null, {exit:true}));
+process.on('SIGUSR2', exitHandler.bind(null, {exit:true}));
+
+//catches uncaught exceptions
+process.on('uncaughtException', exitHandler.bind(null, {exit:true}));

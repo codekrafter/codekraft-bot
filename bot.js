@@ -74,13 +74,19 @@ client.on('messageReactionAdd', (react, usr) => {
 let fs = require("fs");
 
 /*var token = fs.readFileSync('secret.token', 'utf8').toString().trim();
+
 var newToken = "";
+
+//db.read()
+//var secretObj = {token: token, auth: db.get("login").value()}
+//fs.writeFileSync("secret.json", JSON.stringify(secretObj));
+
 for(var i = 0; i < token.length;i++)
 {
     if(token.charCodeAt(i) != 0 && token.charCodeAt(i) != 65533)
         newToken += token[i];
 }
-console.log(newToken);
+console.log(newToken === token);
 token = newToken;
 if (token) {
     client.login(token).catch(e => console.log("Error: " + e));

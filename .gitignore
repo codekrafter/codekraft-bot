@@ -5,7 +5,7 @@ test-*/
 # Secret Token/config file
 secret.token
 secret.json
-
+secret.*
 # Logs
 logs
 *.log

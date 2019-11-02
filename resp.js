@@ -27,7 +27,7 @@ module.exports = class ReponseModule {
 
             //Dad Bot
             if (db.get("dad_bot").value()) {
-                var index = msg.content.toString().toLowerCase().search("(i)('| |)(m|(am))");
+                var index = msg.content.toString().toLowerCase().search("(i)('|’| |)(m|(am))");
                 if (index === 0) {
                     var im = msg.content.substr(index, msg.content.length - index);
                     var mi = im.indexOf('m', 0);
@@ -42,7 +42,7 @@ module.exports = class ReponseModule {
                                 adj = adj.substr(4);
                             }
 
-                            msg.channel.send("Hi " + adj.trim().substr(0, 20) + ", I'm dad");
+                            msg.channel.send("Hi " + adj.trim().substr(0, 50) + ", I'm dad");
                         }
                     }
                 }
@@ -67,6 +67,12 @@ module.exports = class ReponseModule {
                         msg.reply("You mean ***Master*** Huber");
                     }
                 }
+            }
+	    
+	    // Henry Teasing
+	   var str = msg.content.toLowerCase();
+            if (msg.author.id == 578372843071340546 && (str.includes("parent") || str.includes("mom") || str.includes("mother") || (str.includes("dad") && !str.includes("daddy")) || str.includes("father"))) {
+                msg.channel.send("Helicopter Incoming!");
             }
         }
     }

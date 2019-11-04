@@ -57,15 +57,17 @@ module.exports = class MusicModule {
     async playSong(guild, song, key) {
 
         if (!song) {
+            console.log("Disconnecting connection")
             this.queue[guild.id].connection.disconnect();
             //this.queue[guild.id].voiceChannel.leave();
             this.queue[guild.id].songs = [];
             return;
         }
         var stream = await ytdl(song.url);
-        stream.on("error", err => console.err(err)).on('end', () => console.log("ytdl ended"))
-        const dispatcher = this.queue[guild.id].connection.playOpusStream(await ytdl(song.url))
-            .on('end', () => {
+        stream.on("error", err => console.err(err)).on('end', (reason) => console.log("ytdl ended, reason: " + reason))
+        const dispatcher = this.queue[guild.id].connection.playOpusStream(stream);
+        dispatcher.on('end', (reason) => {
+                console.log("Dispatcher Ended, reason: " + reason)
                 this.queue[guild.id].songs.shift();
                 this.playSong(guild, this.queue[guild.id].songs[0]);
                 return;
@@ -168,7 +170,9 @@ module.exports = class MusicModule {
                         this.queue[msg.guild.id].connection = conn;
 
                         this.playSong(msg.guild, song)
+                        msg.channel.send("Playing song...");
                     } catch (err) {
+                        msg.channel.send("Error encountered while attempting to play song");
                         console.error("Unable to join voice channel " + msg.member.voiceChannel + "; error: " + err);
                         return;
                     }
@@ -213,7 +217,9 @@ module.exports = class MusicModule {
             case "np":
                 if(this.queue[msg.guild.id].songs.length > 0)
                 {
-                    
+                    var res = new RichEmbed()
+                        .setTitle("Now Playing");
+                    res.addField("**Now Playing: " + i + "** - " + song.title, secondsToString(song.time) + ", Requested by: *" + song.requester + "* | [Link](" + song.url + ")")
                 } else
                 {
                     msg.channel.send("No songs playing")

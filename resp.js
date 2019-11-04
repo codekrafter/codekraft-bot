@@ -42,7 +42,7 @@ module.exports = class ReponseModule {
                                 adj = adj.substr(4);
                             }
 
-                            msg.channel.send("Hi " + adj.trim().substr(0, 50) + ", I'm dad");
+                            msg.channel.send("Hi " + adj.trim() + ", I'm dad");
                         }
                     }
                 }

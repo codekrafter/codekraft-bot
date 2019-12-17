@@ -2,6 +2,7 @@
   "567474684451356687": {
     "prefix": "?",
     "dad_bot": true,
+    "dad_exclusions": ["650916107305222178", "613764642048573472"],
     "huber_correct": true,
     "raw_commands": {
       "test": {
@@ -45,7 +46,8 @@
     "_cah": {},
     "welcome_message": "610676919385456660",
     "welcome_channel": "465610378341122058",
-    "dad_bot": false
+    "dad_bot": false,
+    "dad_exclusions": []
   },
   "login": {
     "2fa": {

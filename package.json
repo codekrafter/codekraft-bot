@@ -12,6 +12,7 @@
     "speakeasy": "^2.0.0",
     "uws": "^100.0.1",
     "youtube-search": "^1.1.4",
+    "ytdl": "^0.13.1",
     "ytdl-core": "^1.0.0",
     "ytdl-core-discord": "^1.0.3"
   },

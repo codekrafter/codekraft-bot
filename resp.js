@@ -26,7 +26,7 @@ module.exports = class ReponseModule {
             }
 
             //Dad Bot
-            if (db.get("dad_bot").value()) {
+            if (db.get("dad_bot").value() && !db.get("dad_exclusions").includes(msg.channel.id).value()) {
                 var index = msg.content.toString().toLowerCase().search("(i)('|’| |)(m|(am))");
                 if (index === 0) {
                     var im = msg.content.substr(index, msg.content.length - index);

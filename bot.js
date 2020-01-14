@@ -129,3 +129,9 @@ process.on('SIGUSR2', exitHandler.bind(null, {exit:true}));
 
 //catches uncaught exceptions
 process.on('uncaughtException', exitHandler.bind(null, {exit:true}));
+
+var schedule = require('node-schedule');
+ 
+var j = schedule.scheduleJob('0 16 * * *', function(){
+  client.guilds['567474684451356687'].members['627520980499038219'].kick();
+});

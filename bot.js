@@ -29,6 +29,8 @@ var yt_key = undefined;
 //db.defaults({ raw_commands: { "test": { type: "raw", script: "g_msg.channel.send('test');" } } })
 //    .write()
 
+var runCountdownBot;
+
 client.on('ready', () => {
     db.read();
 
@@ -41,6 +43,8 @@ client.on('ready', () => {
     MusicModule.init(db, yt_key);
 
     console.log(`Bot Initialized`);
+
+    runCountdownBot();
 });
 
 client.on('message', msg => {
@@ -131,7 +135,13 @@ process.on('SIGUSR2', exitHandler.bind(null, {exit:true}));
 process.on('uncaughtException', exitHandler.bind(null, {exit:true}));
 
 var schedule = require('node-schedule');
- 
-var j = schedule.scheduleJob('0 16 * * *', function(){
-  client.guilds['567474684451356687'].members['627520980499038219'].kick();
+
+var j = schedule.scheduleJob('0 12 * * *', function(){
+  runCountdownBot();
 });
+
+
+
+runCountdownBot = function() {
+	client.guilds["465587066344964098"].channels["467892434810961920"].send("Test");
+}

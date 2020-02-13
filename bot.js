@@ -44,7 +44,7 @@ client.on('ready', () => {
 
     console.log(`Bot Initialized`);
 
-    runCountdownBot();
+    //runCountdownBot();
 });
 
 client.on('message', msg => {
@@ -140,11 +140,12 @@ var j = schedule.scheduleJob('0 12 * * *', function(){
   runCountdownBot();
 });
 
+
 var term1 = new Date("2020-6-9");
-// Wipe time from today
-today = new Date(today.getFullYear(), today.getMonth(), today.getDate());
 
 runCountdownBot = function() {
 	var today = new Date();
+	// Wipe time from today
+	today = new Date(today.getFullYear(), today.getMonth(), today.getDate());
 	client.guilds.get("465587066344964098").channels.get("467892434810961920").send(Math.ceil((term1.getTime()  - today.getTime()) / (1000 * 60 * 60 * 24)) + " days until TiP starts!");
 }

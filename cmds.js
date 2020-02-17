@@ -1,5 +1,16 @@
-const { RichEmbed } = require("discord.js")
+const { RichEmbed } = require("discord.js");
 
+let fs = require("fs");
+var text2png = require('text2png');
+var sizeOf = require('buffer-image-size');
+var imageToSlices = require('image-to-slices');
+let crypto = require("crypto");
+
+imageToSlices.configure({
+    clipperOptions: {
+        canvas: require('canvas')
+    }
+});
 
 module.exports = class CommandModule {
     constructor() {
@@ -72,7 +83,7 @@ module.exports = class CommandModule {
                 type: "func",
                 func: async function (msg, db) {
                     var targetText = msg.toString().split(" ")[1];
-                    if(targetText != null)
+                    if (targetText != null)
                         targetText = targetText.trim()
                     console.log("target: " + targetText);
 
@@ -136,14 +147,47 @@ module.exports = class CommandModule {
                     } else {
                         const focus_emoji = msg.client.emojis.get("660730829932199956"); // Right now its huber
                         var embed = new RichEmbed()
-                        .setTitle(targetMessage.content)
-                        //.setURL(targetMessage.url)
-                        .setDescription("[**🔼**](" + targetMessage.url + ")")
-                        .setAuthor(targetMessage.member.displayName, targetMessage.author.displayAvatarURL)
-                        .setTimestamp(targetMessage.createdAt)
+                            .setTitle(targetMessage.content)
+                            //.setURL(targetMessage.url)
+                            .setDescription("[**🔼**](" + targetMessage.url + ")")
+                            .setAuthor(targetMessage.member.displayName, targetMessage.author.displayAvatarURL)
+                            .setTimestamp(targetMessage.createdAt)
                         //.setImage(focus_emoji.url)
 
                         msg.channel.send(embed);
+                    }
+                }
+            },
+            "big": {
+                type: "func",
+                func: function (msg, db) {
+                    var parts = msg.content.split(" ").slice(1);
+                    if(parts[0] == undefined)
+                    {
+                        msg.channel.send("Please specify text to make big!");
+                        return;
+                    }
+                    // Check if size was specified
+                    var size = "50px";
+                    var text = parts.join(" ")
+
+                    if(parts[0].split('').reverse().join('').substr(0, 2) == "xp")
+                    {
+                        size = parts[0]
+                        text = parts.slice(1).join(" ");
+                    }
+                    try
+                    {
+                    var img_buffer = text2png(text, { color: 'white',
+                    padding: 5,
+                    font: `${size} "Helvetica Neue"`,
+                    localFontPath: 'HelveticaNeue Medium.ttf',
+                    localFontName: 'Helvetica Neue'});
+                        msg.channel.sendFile(img_buffer);
+                    } catch (err)
+                    {
+                        msg.channel.send("Error creating big text");
+                        return;
                     }
                 }
             }

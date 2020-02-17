@@ -2,15 +2,6 @@ const { RichEmbed } = require("discord.js");
 
 let fs = require("fs");
 var text2png = require('text2png');
-var sizeOf = require('buffer-image-size');
-var imageToSlices = require('image-to-slices');
-let crypto = require("crypto");
-
-imageToSlices.configure({
-    clipperOptions: {
-        canvas: require('canvas')
-    }
-});
 
 module.exports = class CommandModule {
     constructor() {

@@ -1,4 +1,4 @@
-const { RichEmbed } = require("discord.js");
+const { RichEmbed, Attachment } = require("discord.js");
 
 let fs = require("fs");
 var text2png = require('text2png');
@@ -151,10 +151,9 @@ module.exports = class CommandModule {
             },
             "big": {
                 type: "func",
-                func: function (msg, db) {
+                func: async function (msg, db) {
                     var parts = msg.content.split(" ").slice(1);
-                    if(parts[0] == undefined)
-                    {
+                    if (parts[0] == undefined) {
                         msg.channel.send("Please specify text to make big!");
                         return;
                     }
@@ -162,22 +161,30 @@ module.exports = class CommandModule {
                     var size = "50px";
                     var text = parts.join(" ")
 
-                    if(parts[0].split('').reverse().join('').substr(0, 2) == "xp")
-                    {
+                    if (parts[0].split('').reverse().join('').substr(0, 2) == "xp") {
                         size = parts[0]
                         text = parts.slice(1).join(" ");
                     }
-                    try
-                    {
-                    var img_buffer = text2png(text, { color: 'white',
-                    padding: 5,
-                    font: `${size} "Helvetica Neue"`,
-                    localFontPath: 'HelveticaNeue Medium.ttf',
-                    localFontName: 'Helvetica Neue'});
-                        msg.channel.sendFile(img_buffer);
-                    } catch (err)
-                    {
+                    try {
+                        var img_buffer = text2png(text, {
+                            color: 'white',
+                            padding: 5,
+                            font: `${size} "Helvetica Neue"`,
+                            localFontPath: 'HelveticaNeue Medium.ttf',
+                            localFontName: 'Helvetica Neue'
+                        });
+                        
+                        let attachment = new Attachment(img_buffer, "text.png");
+
+                        let imgEmbed = new RichEmbed()
+                            .setAuthor(msg.member.displayName, msg.author.displayAvatarURL)
+                            .attachFile(attachment)
+                            .setImage("attachment://text.png");
+                        //msg.channel.sendFile(img_buffer);
+                        await msg.channel.send(imgEmbed);
+                    } catch (err) {
                         msg.channel.send("Error creating big text");
+                        console.log(err);
                         return;
                     }
                 }

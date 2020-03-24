@@ -55,7 +55,7 @@ module.exports = class ReponseModule {
 
                 index = split.indexOf("huber");
                 if (index > -1) {
-                    msg.react(msg.guild.emojis.get('660730829932199956'));
+                    //try {  msg.react(msg.guild.emojis.get('660730829932199956') || ''); } finally {}
                     var preWord;
                     var prePreWord;
                     if (split[index - 1]) {

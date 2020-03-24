@@ -51,40 +51,13 @@
   },
   "691710794500407436": {
       "prefix": "?",
-      "dad_bot": true,
-      "dad_exclusions": ["650916107305222178", "613764642048573472"],
-      "huber_correct": true,
-      "raw_commands": {
-        "test": {
-          "type": "raw",
-          "script": "g_msg.channel.send('test');"
-        }
-      },
-      "responses": {
-        "Cyka": "Bylat Comrade!"
-      },
-      "adv-responses": {
-        "(god)( *)(emperor)( *)(huber)": "**All Hail the God Emperor!**",
-        "(freshmen)|(brendan)|(brendino)|(388516471027793933)|(leo)|(318776986812284930)|(robbie)|(224618552567529474)": "Fucking Freshmen",
-        "inshallah": "*Inshallah Brother!*",
-        "(guess)(| )(what)": "Jihad!"
-      },
-      "cah": {
-        "packs": [
-          {
-            "title": "Test Pack 1",
-            "black": [
-              "Test Black Card 1 []"
-            ],
-            "white": [
-              "White Card Test 1",
-              "White Card Test 2"
-            ]
-          }
-        ]
-      },
-      "_cah": {}
-    },
+      "dad_bot": false,
+      "dad_exclusions": [],
+      "huber_correct": false,
+      "raw_commands": {},
+      "responses": {},
+      "adv-responses": {},
+  },
   "login": {
     "2fa": {
       "secret": {

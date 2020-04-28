@@ -27,7 +27,7 @@ module.exports = class ReponseModule {
 
             //Dad Bot
             if (db.get("dad_bot").value() && !db.get("dad_exclusions").includes(msg.channel.id).value()) {
-                if (db.get("dad_bot_inclusive").value() && !db.get("dad_bot_inclusions").includes(msg.channel.id).value()) {
+                if (db.get("dad_bot_inclusive").value() && db.get("dad_bot_inclusions").includes(msg.channel.id).value()) {
 
                     var index = msg.content.toString().toLowerCase().search("(i)('|’| |)(m|(am))");
                     if (index === 0) {

@@ -27,22 +27,25 @@ module.exports = class ReponseModule {
 
             //Dad Bot
             if (db.get("dad_bot").value() && !db.get("dad_exclusions").includes(msg.channel.id).value()) {
-                var index = msg.content.toString().toLowerCase().search("(i)('|’| |)(m|(am))");
-                if (index === 0) {
-                    var im = msg.content.substr(index, msg.content.length - index);
-                    var mi = im.indexOf('m', 0);
-                    if (mi != -1) {
-                        var adj = im.substr(mi + 1, im.length - mi);
-                        if (adj[0] == " ") {
-                            if (adj.substr(0, 3) == " a ") {
-                                adj = adj.substr(3);
-                            }
+                if (db.get("dad_bot_inclusive").value() && !db.get("dad_bot_inclusions".includes(msg.channel.id).value())) {
 
-                            if (adj.substr(0, 4) == " an ") {
-                                adj = adj.substr(4);
-                            }
+                    var index = msg.content.toString().toLowerCase().search("(i)('|’| |)(m|(am))");
+                    if (index === 0) {
+                        var im = msg.content.substr(index, msg.content.length - index);
+                        var mi = im.indexOf('m', 0);
+                        if (mi != -1) {
+                            var adj = im.substr(mi + 1, im.length - mi);
+                            if (adj[0] == " ") {
+                                if (adj.substr(0, 3) == " a ") {
+                                    adj = adj.substr(3);
+                                }
 
-                            msg.channel.send("Hi " + adj.trim() + ", I'm dad");
+                                if (adj.substr(0, 4) == " an ") {
+                                    adj = adj.substr(4);
+                                }
+
+                                msg.channel.send("Hi " + adj.trim() + ", I'm dad");
+                            }
                         }
                     }
                 }
@@ -69,9 +72,9 @@ module.exports = class ReponseModule {
                     }
                 }
             }
-	    
-	    // Henry Teasing
-	   var str = msg.content.toLowerCase();
+
+            // Henry Teasing
+            var str = msg.content.toLowerCase();
             if (msg.author.id == 578372843071340546 && (str.includes("parent") || str.includes("mom") || str.includes("mother") || (str.includes("dad") && !str.includes("daddy")) || str.includes("father"))) {
                 msg.channel.send("Helicopter Incoming!");
             }

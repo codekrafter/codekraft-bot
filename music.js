@@ -87,7 +87,7 @@ module.exports = class MusicModule {
             this.queue[msg.guild.id] = { vc: undefined, connection: null, songs: [], playing: false };
         }
 
-        if (parts[0] === "music" || parts[0] === "m") {
+        if (parts[0] === "music") {
             parts = parts.slice(1);
         } else {
             return;

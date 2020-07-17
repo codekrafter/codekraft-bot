@@ -3,10 +3,7 @@
     "prefix": "?",
     "dad_bot": true,
     "dad_bot_inclusive": false,
-    "dad_exclusions": [
-      "650916107305222178",
-      "613764642048573472"
-    ],
+    "dad_exclusions": ["650916107305222178", "613764642048573472"],
     "huber_correct": true,
     "raw_commands": {
       "test": {
@@ -27,13 +24,8 @@
       "packs": [
         {
           "title": "Test Pack 1",
-          "black": [
-            "Test Black Card 1 []"
-          ],
-          "white": [
-            "White Card Test 1",
-            "White Card Test 2"
-          ]
+          "black": ["Test Black Card 1 []"],
+          "white": ["White Card Test 1", "White Card Test 2"]
         }
       ]
     },
@@ -52,10 +44,7 @@
     "welcome_channel": "465610378341122058",
     "dad_bot": true,
     "dad_bot_inclusive": true,
-    "dad_bot_inclusions": [
-      "467378192210984981",
-      "465773400841912321"
-    ],
+    "dad_bot_inclusions": ["467378192210984981", "465773400841912321"],
     "dad_exclusions": []
   },
   "691710794500407436": {
@@ -67,6 +56,25 @@
     "raw_commands": {},
     "responses": {},
     "adv-responses": {}
+  },
+  "733444109502644325": {
+    "prefix": "!",
+    "dad_bot": false,
+    "dad_bot_inclusive": false,
+    "dad_exclusions": [],
+    "huber_correct": false,
+    "raw_commands": {},
+    "responses": {},
+    "adv-responses": {},
+    "meeting_control": true,
+    "meeting_rooms": [
+      {
+        "id": "meeting1",
+        "desc": "Meeting Room 1",
+        "cat_id": "733461490102829177",
+        "enabled": false
+      }
+    ]
   },
   "login": {
     "2fa": {

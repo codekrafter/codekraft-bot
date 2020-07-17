@@ -3,7 +3,9 @@ module.exports = class ReponseModule {
 
     }
 
-    init(db) { }
+    init(db) {
+        
+    }
 
     onMessage(msg, db) {
         if (!msg.author.bot && msg.channel.id != 567476531354665002) {

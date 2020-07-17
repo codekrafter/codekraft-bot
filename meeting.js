@@ -85,6 +85,7 @@ module.exports = class MeetingModule {
           .overwritePermissions(memberRole, {
             VIEW_CHANNEL: true,
           });
+          msg.channel.send(room.desc + " enabled");
       } else if (action === "disable") {
         console.log("disabling meeting");
         msg.client.channels
@@ -92,6 +93,7 @@ module.exports = class MeetingModule {
           .overwritePermissions(memberRole, {
             VIEW_CHANNEL: false,
           });
+          msg.channel.send(room.desc + " disabled");
       } else {
         msg.channel.send(
           "ERROR: unknown internal action `" + action + "`!"
